@@ -244,3 +244,53 @@ button:disabled, .disabled {
   opacity: 0.9;
   transform: translateY(-2px);
 }
+
+.help-button {
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    font-size: 16px;
+    font-weight: bold;
+    margin-left: 8px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border: none;
+    padding: 0;
+}
+
+.help-button:hover {
+    background-color: #45a049;
+}
+
+.dialog-box.help-dialog {
+    max-width: 400px;
+    padding: 20px;
+}
+
+.help-dialog h3 {
+    color: #4CAF50;
+    margin: 0 0 15px 0;
+    text-align: center;
+}
+
+.help-dialog .rules-list {
+    padding-left: 20px;
+    margin: 10px 0;
+}
+
+.help-dialog .rules-sublist {
+    list-style-type: disc;
+    padding-left: 20px;
+    margin: 5px 0;
+}
+
+.help-dialog p.good-luck {
+    text-align: center;
+    color: #4CAF50;
+    margin-top: 15px;
+    font-weight: bold;
+}

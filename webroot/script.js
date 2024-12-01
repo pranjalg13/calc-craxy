@@ -53,27 +53,33 @@ class MathGame {
   }
 
   showDialog(message, showCancel = false) {
-    console.log(`Showing dialog: "${message}", showCancel: ${showCancel}`);
     return new Promise((resolve) => {
-      if (!this.dialogMessage || !this.dialogOverlay || !this.dialogCancel) {
-        console.error('Dialog elements not initialized');
-        resolve(false);
-        return;
-      }
+        if (!this.dialogMessage || !this.dialogOverlay || !this.dialogCancel) {
+            console.error('Dialog elements not initialized');
+            resolve(false);
+            return;
+        }
 
-      this.dialogMessage.textContent = message;
-      this.dialogCancel.classList.toggle('hidden', !showCancel);
-      this.dialogOverlay.classList.remove('hidden');
-      this.dialogCallback = resolve;
+        if (message.includes('How to Play')) {
+            this.dialogMessage.closest('.dialog-box').classList.add('help-dialog');
+            this.dialogMessage.innerHTML = message;
+        } else {
+            this.dialogMessage.closest('.dialog-box').classList.remove('help-dialog');
+            this.dialogMessage.textContent = message;
+        }
 
-      if (message.includes("Thanks for playing") || message.includes("Game Over") || message.includes("Congratulations")) {
-        this.dialogOk.addEventListener('click', () => {
-          window.parent?.postMessage(
-            { type: 'returnToMain' },
-            '*'
-          );
-        }, { once: true });
-      }
+        this.dialogCancel.classList.toggle('hidden', !showCancel);
+        this.dialogOverlay.classList.remove('hidden');
+        this.dialogCallback = resolve;
+
+        if (message.includes("Thanks for playing") || message.includes("Game Over") || message.includes("Congratulations")) {
+            this.dialogOk.addEventListener('click', () => {
+                window.parent?.postMessage(
+                    { type: 'returnToMain' },
+                    '*'
+                );
+            }, { once: true });
+        }
     });
   }
 
@@ -202,6 +208,7 @@ class MathGame {
     this.numberButtons = document.querySelectorAll(".number-btn");
     this.operatorButtons = document.querySelectorAll(".operator-btn");
     this.deleteLastCharBtn = document.getElementById("deleteLastChar");
+    this.helpButton = document.getElementById("helpButton");
   }
 
   setupEventListeners() {
@@ -211,6 +218,7 @@ class MathGame {
     this.checkResultBtn.addEventListener("click", () => this.checkResult());
     this.giveUpBtn.addEventListener("click", () => this.giveUp());
     this.deleteLastCharBtn.addEventListener("click", () => this.deleteLastChar());
+    this.helpButton.addEventListener("click", () => this.showHelpDialog());
 
     this.numberButtons.forEach((btn) => {
       btn.addEventListener("click", () => this.handleNumberClick(btn));
@@ -442,6 +450,28 @@ class MathGame {
       },
       '*'
     );
+  }
+
+  async showHelpDialog() {
+    const helpMessage = `
+        <h3>How to Play Numblet</h3>
+        <ol class="rules-list">
+            <li>Your goal is to reach the Target Number using the available number tiles.</li>
+            <li>Use the given numbers and operators (+, -, ×, ÷) to create an expression.</li>
+            <li>Rules:
+                <ul class="rules-sublist">
+                    <li>Each number can only be used once</li>
+                    <li>You have only 1 attempt to find the correct answer</li>
+                    <li>Use parentheses ( ) to control the order of operations</li>
+                    <li>Top 5 players will be displayed on the leaderboard</li>
+                </ul>
+            </li>
+            <li>Click 'Check Result' when you think you have the correct expression.</li>
+            <li>Use the backspace (⌫) to remove the last entry or 'Clear' to start over.</li>
+        </ol>
+        <p class="good-luck">Good luck!</p>`;
+
+    await this.showDialog(helpMessage);
   }
 }
 
