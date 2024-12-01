@@ -462,8 +462,7 @@ class MathGame {
                 <ul class="rules-sublist">
                     <li>Each number can only be used once</li>
                     <li>You have only 1 attempt to find the correct answer</li>
-                    <li>Use parentheses ( ) to control the order of operations</li>
-                    <li>Top 5 players will be displayed on the leaderboard</li>
+                    <li>First 5 player to solve the puzzle will be displayed on the leaderboard</li>
                 </ul>
             </li>
             <li>Click 'Check Result' when you think you have the correct expression.</li>

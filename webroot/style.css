@@ -280,12 +280,29 @@ button:disabled, .disabled {
 .help-dialog .rules-list {
     padding-left: 20px;
     margin: 10px 0;
+    text-align: center;
+}
+
+.help-dialog .rules-list li {
+    text-align: left;
+    margin-bottom: 8px;
 }
 
 .help-dialog .rules-sublist {
-    list-style-type: disc;
-    padding-left: 20px;
+    list-style-type: none;
+    padding-left: 0;
     margin: 5px 0;
+}
+
+.help-dialog .rules-sublist li {
+    padding-left: 20px;
+    position: relative;
+}
+
+.help-dialog .rules-sublist li:before {
+    content: "•";
+    position: absolute;
+    left: 0;
 }
 
 .help-dialog p.good-luck {
