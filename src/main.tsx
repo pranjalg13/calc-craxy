@@ -72,6 +72,15 @@ type MainPageProps = {
 const MainPage = ({ username, points, onShowWebviewClick }: MainPageProps) => {
   return (
     <vstack alignment="middle center" width="100%" height="100%" gap="large">
+      {/* Add Logo Image */}
+      <image
+        url="logo.png"
+        imageHeight="157px"
+        imageWidth="1057px"
+        width="400px"
+        height="60px"
+        description="Pixelary Logo"
+      />
       {/* Main Content */}
       <vstack gap="medium" alignment="middle center" width="80%">
         {/* Leaderboard Section */}
@@ -87,7 +96,7 @@ const MainPage = ({ username, points, onShowWebviewClick }: MainPageProps) => {
             Leaderboard
           </text>
           <text size="small" color="#888888">
-            [first 5 to complete]
+            [first 5 to complete the puzzle]
           </text>
           {points.map((x, placing) => (
             <hstack
@@ -103,7 +112,6 @@ const MainPage = ({ username, points, onShowWebviewClick }: MainPageProps) => {
                 &nbsp;{x.username}:
               </text>
               <spacer />
-              <text size="large">{x.score}</text>
             </hstack>
           ))}
         </vstack>
@@ -163,6 +171,7 @@ Devvit.addCustomPostType({
       );
       return result.members
         .sort((a, b) => b.score - a.score) // Sort descending by score
+        .slice(0, 5) // Limit to top 5 entries
         .map((x) => {
           console.log("Point:" + x.member + " " + x.score);
           return { username: x.member, score: x.score };
@@ -203,7 +212,7 @@ Devvit.addCustomPostType({
       const savedAttempts = await context.redis.get(
         `attempts_${context.postId}_${username}`
       );
-      return Number(savedAttempts ?? 3);
+      return Number(savedAttempts ?? 1);
     });
 
     const onMessage = async (msg: WebViewMessage) => {
