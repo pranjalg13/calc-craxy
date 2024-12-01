@@ -1,0 +1,246 @@
+:root {
+  --primary-color: #2A2A2A;
+  --background-color: #004AAD;
+  --text-color: #FFFFFF;
+  --accent-color: #98FB98;
+  --accent-shadow: #FF69B4;
+  --border-radius: 8px;
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  margin: 0 auto;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  width: 100%;
+  max-height: 600px;
+}
+
+.screen {
+  width: 100%;
+  max-width: 500px;
+  padding: 12px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.hidden {
+  display: none;
+}
+
+.button-container {
+  display: flex;
+  gap: 1rem;
+  margin: 20px 0;
+}
+
+button {
+  padding: 8px 12px;
+  border: none;
+  border-radius: var(--border-radius);
+  background-color: #1E40AF;
+  color: white;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+button:hover {
+  transform: translateY(-2px);
+}
+
+button:disabled, .disabled {
+  background-color: #d1d5db;
+  color: #6b7280;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+
+.expression-container {
+  margin: 12px 0;
+  display: flex;
+  gap: 8px;
+}
+
+#expression {
+  flex: 1;
+  padding: 8px;
+  font-size: 1rem;
+  border: 1px solid var(--primary-color);
+  border-radius: var(--border-radius);
+}
+
+.numbers-grid, .operators-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin: 12px 0;
+}
+
+.operators-grid {
+  margin-top: 20px;
+  border-top: 2px solid var(--primary-color);
+  padding-top: 20px;
+}
+
+.number-btn, .operator-btn {
+  padding: 12px;
+  font-size: 1rem;
+  min-height: 45px;
+  background-color: var(--primary-color);
+  color: var(--text-color);
+}
+
+.operator-btn {
+  background-color: var(--primary-color);
+}
+
+.action-buttons {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+#checkResult {
+  background-color: #22C55E;
+  color: white;
+  font-weight: bold;
+}
+
+#giveUp {
+  background-color: #DC2626;
+  color: white;
+  font-weight: bold;
+}
+
+
+@media (max-width: 500px) {
+  body {
+    padding: 0.5rem;
+  }
+  
+  .screen {
+    padding: 8px;
+  }
+  
+  .number-btn, .operator-btn {
+    padding: 10px;
+    font-size: 0.9rem;
+    min-height: 40px;
+  }
+  
+  .game-info h2, 
+  .game-info h3 {
+    font-size: 0.9rem;
+  }
+}
+
+#dialogOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.dialog-box {
+    background-color: var(--primary-color);
+    padding: 12px;
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 280px;
+    width: 90%;
+    text-align: center;
+    color: var(--text-color);
+}
+
+.dialog-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 15px;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.game-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.game-info {
+    flex: 1;
+}
+
+.user-info {
+    background-color: var(--primary-color);
+    padding: 4px 8px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    font-size: 0.85rem;
+    color: var(--text-color);
+}
+
+.username {
+    font-weight: 500;
+    color: var(--text-color);
+}
+
+#playerName {
+    color: var(--accent-color);
+    font-weight: 600;
+}
+
+.game-info h2, 
+.game-info h3 {
+    margin: 4px 0;
+    font-size: 1rem;
+}
+
+#deleteLastChar {
+  background-color: #21a898;  /* Deep purple */
+  padding: 8px 12px;
+  font-size: 1.2rem;
+  min-width: 40px;
+  color: white;
+}
+
+#clearExpression {
+  background-color: #21a898;  /* Deep purple */
+  padding: 8px 12px;
+  font-size: 0.9rem;
+  color: white;
+  font-weight: 500;
+}
+
+#deleteLastChar:hover,
+#clearExpression:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.action-buttons button {
+  padding: 10px 20px;
+  font-size: 1rem;
+  border-radius: var(--border-radius);
+  transition: transform 0.2s, opacity 0.2s;
+}
+
+.action-buttons button:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+}

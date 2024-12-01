@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta charset="UTF-8" />
+    <title>Math Game</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <div id="app">
+        <!-- Game Screen -->
+        <div id="gameScreen" class="screen">
+            <div class="game-header">
+                <div class="game-info">
+                    <h2>Target Number: <span id="targetNumber">000</span></h2>
+                    <h3>Attempts Left: <span id="attempts">3</span></h3>
+                </div>
+                <div class="user-info">
+                    <span class="username">Player: <span id="playerName">Guest</span></span>
+                </div>
+            </div>
+            
+            <div class="expression-container">
+                <input type="text" id="expression" readonly>
+                <button id="deleteLastChar">⌫</button>
+                <button id="clearExpression">Clear</button>
+            </div>
+
+            <div class="numbers-grid">
+                <button class="number-btn" data-value="2">2</button>
+                <button class="number-btn" data-value="7">7</button>
+                <button class="number-btn" data-value="8">8</button>
+                <button class="number-btn" data-value="25">25</button>
+                <button class="number-btn" data-value="50">50</button>
+                <button class="number-btn" data-value="100">100</button>
+            </div>
+
+            <div class="operators-grid">
+                <button class="operator-btn" data-value="(">(</button>
+                <button class="operator-btn" data-value=")">)</button>
+                <button class="operator-btn" data-value="+">+</button>
+                <button class="operator-btn" data-value="-">-</button>
+                <button class="operator-btn" data-value="*">×</button>
+                <button class="operator-btn" data-value="/">÷</button>
+            </div>
+
+            <div class="action-buttons">
+                <button id="checkResult">Check Result</button>
+                <button id="giveUp">Give Up</button>
+            </div>
+        </div>
+        <div id="dialogOverlay" class="hidden">
+            <div class="dialog-box">
+                <p id="dialogMessage"></p>
+                <div class="dialog-buttons">
+                    <button id="dialogOk">OK</button>
+                    <button id="dialogCancel" class="hidden">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="math.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
