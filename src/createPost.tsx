@@ -14,7 +14,7 @@ Devvit.addMenuItem({
     const subreddit = await reddit.getCurrentSubreddit();
     const post = await reddit.submitPost({
       title: `Numblet #${Math.floor(Math.random() * 900) + 100}`,
-      subredditName: subreddit.name,
+      subredditName: subreddit.name,      
       // The preview appears while the post loads
       preview: (
         <vstack height="100%" width="100%" alignment="middle center">

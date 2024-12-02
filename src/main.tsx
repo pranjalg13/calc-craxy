@@ -79,7 +79,7 @@ const MainPage = ({ username, points, onShowWebviewClick }: MainPageProps) => {
         imageWidth="1057px"
         width="400px"
         height="60px"
-        description="Pixelary Logo"
+        description="Numblet Logo"
       />
       {/* Main Content */}
       <vstack gap="medium" alignment="middle center" width="80%">
@@ -95,8 +95,8 @@ const MainPage = ({ username, points, onShowWebviewClick }: MainPageProps) => {
           <text size="xlarge" weight="bold">
             Leaderboard
           </text>
-          <text size="small" color="#888888">
-            [first 5 to complete the puzzle]
+          <text size="medium" color="#ffff00">
+            [First 5 solvers earn leaderboard bragging rights!]
           </text>
           {points.map((x, placing) => (
             <hstack
@@ -109,7 +109,7 @@ const MainPage = ({ username, points, onShowWebviewClick }: MainPageProps) => {
             >
               <text size="large">{placing + 1}.</text>
               <text size="large" weight="bold" color="#4CAF50">
-                &nbsp;{x.username}:
+                &nbsp;{x.username}
               </text>
               <spacer />
             </hstack>
@@ -154,6 +154,18 @@ Devvit.addCustomPostType({
   name: "Math Game",
   height: "tall",
   render: (context) => {
+    const isMobile = (context.dimensions?.width ?? 500) < 500;
+    
+    if (isMobile) {
+      return (
+        <vstack alignment="top center" padding="medium">
+          <text size="large" weight="bold" color="#FF4444">
+            Please use desktop mode to play this game
+          </text>
+        </vstack>
+      );
+    }
+
     // Load username with `useAsync` hook
     const [username] = useState(async () => {
       const currUser = await context.reddit.getCurrentUser();
