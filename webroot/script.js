@@ -184,7 +184,7 @@ class MathGame {
         const pointsEarned = this.attempts * 10;
         const newPoints = Number(this.points || 0) + pointsEarned;
         this.updatePoints(newPoints);
-        await this.showDialog(`🎉 Congratulations! You won! You’ve earned +${pointsEarned} points. Great job—this is your moment to shine today!`);
+        await this.showDialog(`🎉 Congratulations! You solved it!. Great job—this is your moment to shine today!`);
         this.disableGame();
       } else {
         console.log('Wrong answer');
@@ -238,7 +238,6 @@ class MathGame {
     console.log(`Expression: ${this.expression}`);
     
     this.targetNumberElement.textContent = this.targetNumber;
-    this.attemptsElement.textContent = this.attempts;
     this.expressionInput.value = this.expression;
   }
 
